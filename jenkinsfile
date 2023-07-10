@@ -41,14 +41,15 @@ pipeline {
         stage('Deploy') {
             steps {
                script {
-                   docker.withRegistry(registry, registryCredentials) {
-                        dockerImage.push()
+                   withDockerRegistry([registryCredentialsId: registryCredentials, url: ""]) {
+                       dockerImage.push()
                    }
                }
             }
         }
     }
 }
+
 
 
 
